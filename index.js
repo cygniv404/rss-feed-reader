@@ -56,7 +56,7 @@ export default class App extends Component {
 
 					this.setState({feed: singleFeed })
 		    })
-			.catch((error) => console.log(error))
+			.catch(() => console.log("check if you have CORS permission to" + event.target.elements.url.value))
 		  })
 
 	}
@@ -69,7 +69,7 @@ export default class App extends Component {
 
 			<form onSubmit={this.getnews.bind(this)}>
 			<input type="text" name="url" placeholder="url" />
-			<input type="submit" value="submit"> get news</input>
+			<input type="submit" value="get news"/>
 			</form>
 
 			<div>
