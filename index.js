@@ -38,16 +38,15 @@ export default class App extends Component {
 						_news:[]
 
 					}
-					for (var i = 0; i < newsItem.length; i++) {
+					for (var i = 1; i < newsItem.length; i++) {
 						 	var singleNews = new News()
-						  singleNews.title =  newsItem[i].childNodes[0].textContent;
-						  singleNews.description =  newsItem[i].childNodes[1].textContent;
-
-						  singleNews.link =  newsItem[i].childNodes[2].textContent;
-						  singleNews.guid =  newsItem[i].childNodes[3].textContent;
-						  singleNews.category =  newsItem[i].childNodes[4].textContent;
-						  singleNews.creator =  newsItem[i].childNodes[5].textContent;
-						  singleNews.pubDate =  newsItem[i].childNodes[6].textContent;
+						  singleNews.title =  responseDoc.getElementsByTagName('title')[i].textContent;
+						  singleNews.description =  responseDoc.getElementsByTagName('description')[i].textContent;
+						  singleNews.link =  responseDoc.getElementsByTagName('link')[i].textContent;
+						  singleNews.guid =  responseDoc.getElementsByTagName('guid')[i].textContent;
+						  singleNews.category =  responseDoc.getElementsByTagName('category')[i].textContent;
+						  singleNews.creator =  responseDoc.getElementsByTagName('dc:creator')[i].textContent;
+						  singleNews.pubDate =  responseDoc.getElementsByTagName('pubDate')[i].textContent;
 
 
 						singleFeed._news.push(singleNews)
@@ -56,7 +55,7 @@ export default class App extends Component {
 
 					this.setState({feed: singleFeed })
 		    })
-			.catch(() => console.log("check if you have CORS permission to" + event.target.elements.url.value))
+			.catch((error) => console.log(error))
 		  })
 
 	}
